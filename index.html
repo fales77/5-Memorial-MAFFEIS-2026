@@ -21,9 +21,7 @@
     --verde-chiaro: #e8f5ec;
     --testo-scuro: #1a202c;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: 'Barlow', sans-serif;
     background: var(--grigio-chiaro);
@@ -55,13 +53,17 @@
     background: rgba(200,16,46,0.12);
     border-radius: 50%;
   }
-
   .header-logos {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px 8px;
     border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+  .figc-logo {
+    height: 52px;
+    width: auto;
+    filter: brightness(1.15);
   }
   .logo-badge {
     display: flex;
@@ -73,15 +75,6 @@
     letter-spacing: 0.5px;
     color: rgba(255,255,255,0.85);
   }
-  .logo-icon {
-    width: 32px; height: 32px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    border: 1px solid rgba(255,255,255,0.25);
-  }
-
   .header-main {
     padding: 16px 16px 20px;
     position: relative; z-index: 1;
@@ -111,15 +104,6 @@
   .header-title span {
     color: var(--oro);
   }
-  .header-subtitle {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-    margin-top: 6px;
-  }
   .header-category {
     margin-top: 10px;
     display: inline-block;
@@ -133,7 +117,6 @@
     text-transform: uppercase;
     color: var(--oro);
   }
-
   .header-info {
     background: rgba(0,0,0,0.2);
     display: flex;
@@ -145,7 +128,7 @@
     color: rgba(255,255,255,0.8);
   }
 
-  /* TABS */
+  /* TABS CENTRATI */
   .tabs-wrapper {
     background: var(--blu-scuro);
     overflow-x: auto;
@@ -159,13 +142,15 @@
   .tabs-wrapper::-webkit-scrollbar { display: none; }
   .tabs {
     display: flex;
+    justify-content: center;
     min-width: max-content;
     padding: 0 4px;
+    gap: 6px;
   }
   .tab {
     padding: 12px 16px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -200,51 +185,53 @@
     .groups-grid { grid-template-columns: 1fr; }
   }
 
-  /* GROUP CARD */
-  .group-card {
+ /* GROUP CARD - Stile come nell'immagine */
+.group-card {
     background: white;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .group-card:active { transform: scale(0.97); }
-  .group-header {
-    background: linear-gradient(135deg, var(--blu) 0%, var(--blu-medio) 100%);
-    padding: 10px 12px;
+}
+.group-card:active { transform: scale(0.97); }
+
+.group-header {
+    background: #1e3a6b;           /* Blu scuro come nell'immagine */
+    padding: 14px 16px;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  .group-letter {
+}
+.group-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--oro);
-    line-height: 1;
-  }
-  .group-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-  }
+    color: rgba(255,255,255,0.75);
+}
+.group-letter {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: white;
+    line-height: 1;
+    margin-top: 2px;
+}
   .group-teams {
     padding: 8px 12px;
   }
   .group-team-name {
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 14px;           /* Ingrandito */
+    font-weight: 700;
     color: var(--testo-scuro);
-    padding: 3px 0;
+    padding: 4px 0;
     border-bottom: 1px solid var(--grigio-chiaro);
     text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
+    letter-spacing: 0.4px;
+}
   .group-team-name:last-child { border-bottom: none; }
 
   /* STANDINGS */
@@ -277,7 +264,6 @@
     color: var(--oro);
     line-height: 1;
   }
-
   .standings-table {
     width: 100%;
     border-collapse: collapse;
@@ -311,11 +297,12 @@
   .standings-table tbody td:first-child {
     text-align: left;
     padding-left: 14px;
-    font-size: 12px;
+    font-size: 14.5px;        /* Ingrandito */
     font-weight: 700;
     text-transform: uppercase;
-    max-width: 130px;
-  }
+    max-width: 140px;
+    line-height: 1.35;
+}
   .pos-badge {
     display: inline-flex;
     align-items: center;
@@ -331,7 +318,6 @@
   .pos-2 { background: var(--blu); color: white; }
   .pos-3 { background: var(--rosso); color: white; }
   .pos-other { background: var(--grigio-medio); color: var(--grigio-testo); }
-
   .pts-cell {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 16px;
@@ -387,12 +373,13 @@
     display: block;
   }
   .match-team {
-    font-size: 11px;
+    font-size: 14px;           /* Ingrandito */
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
     color: var(--testo-scuro);
-  }
+    line-height: 1.3;
+}
   .match-team.home { text-align: right; }
   .match-team.away { text-align: left; }
   .match-score {
@@ -420,7 +407,7 @@
     letter-spacing: 0.5px;
   }
 
-  /* PLAYOFF / FINALS */
+  /* PLAYOFF & FINALS */
   .phase-card {
     background: white;
     border-radius: 10px;
@@ -517,7 +504,6 @@
     border-radius: 3px;
   }
 
-  /* NAZIONALE BANNER */
   .nazionale-banner {
     background: linear-gradient(135deg, var(--verde), #3d8a35);
     color: white;
@@ -550,87 +536,45 @@
     margin-top: 8px;
   }
 
-  /* INFO BANNER */
   .info-banner {
     background: var(--blu-scuro);
     color: white;
     border-radius: 10px;
-    padding: 12px 14px;
-    margin-bottom: 12px;
-    font-size: 12px;
-    line-height: 1.6;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    font-size: 13.5px;
+    line-height: 1.65;
     font-weight: 500;
-  }
-  .info-banner strong {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.info-banner strong {
     color: var(--oro);
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
+    font-size: 14.5px;
     letter-spacing: 0.5px;
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  .legend-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: var(--grigio-testo);
-    font-weight: 600;
-  }
-  .legend-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* SECTION TITLE */
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--grigio-testo);
-    margin-bottom: 8px;
-    margin-top: 4px;
-  }
-
-  /* TEAM NAME small */
-  td.team-name-cell {
-    display: flex;
-    align-items: center;
-  }
+}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="header-logos">
-    <div class="logo-badge">
-      <div class="logo-icon">⚽</div>
-      <div>
-        <div>FIGC</div>
-        <div style="font-weight:400;font-size:9px;color:rgba(255,255,255,0.5)">SETTORE GIOVANILE</div>
-      </div>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Federazione_Italiana_Giuoco_Calcio_Logo_2021.png" 
+         alt="FIGC Logo Ufficiale" 
+         class="figc-logo">
+
     <div class="logo-badge" style="flex-direction:column;align-items:flex-end;gap:2px">
-      <!--<div style="font-size:10px;font-weight:900;letter-spacing:1px;color:var(--oro)">JUVENTUS</div> -->
       <div style="font-size:9px;color:rgba(255,255,255,0.5)">ACADEMY ELITE</div>
       <div style="font-size:9px;color:rgba(255,255,255,0.5)">VOLPIANO</div>
     </div>
   </div>
-  <div class="header-main">
-    <div class="edition-badge">5ª Edizione</div>
-    <div class="header-title">Memorial<br><span>Silvano Maffeis</span></div>
+
+  <div class="header-main">    
+    <div class="header-title">5° Memorial<br><span>Silvano Maffeis</span></div>
     <div class="header-category">Esordienti 2° Anno · Under 13</div>
   </div>
+
   <div class="header-info">
     📍 Via Trento 104, Volpiano
   </div>
@@ -639,7 +583,7 @@
 <div class="tabs-wrapper">
   <div class="tabs">
     <div class="tab active" onclick="showTab('gironi')">Gironi</div>
-    <div class="tab" onclick="showTab('classifica')">Classifica</div>
+    <div class="tab" onclick="showTab('classifica')">Classifiche</div>
     <div class="tab" onclick="showTab('partite')">Partite</div>
     <div class="tab" onclick="showTab('playoff')">Playoff & Finali</div>
   </div>
@@ -649,31 +593,22 @@
 
   <!-- GIRONI -->
   <div class="section active" id="gironi">
-    <!--<p class="section-title">Le 6 squadre per girone</p> -->
     <div class="groups-grid">
-
       <div class="group-card">
-        <div class="group-header">
-          <div>
-            <div class="group-label">Girone</div>
-            <div class="group-letter">A</div>
-          </div>
-        </div>
-        <div class="group-teams">
-          <div class="group-team-name">Volpiano Pianese</div>
-          <div class="group-team-name">Vanchiglia</div>
-          <div class="group-team-name">Cirié</div>
-          <div class="group-team-name">PSG</div>
-        </div>
-      </div>
-
+		<div class="group-header">
+			<div class="standings-title">Girone A</div>	
+		</div>
+		<div class="group-teams">
+			<div class="group-team-name">Volpiano Pianese</div>
+			<div class="group-team-name">Vanchiglia</div>
+			<div class="group-team-name">Cirié</div>
+			<div class="group-team-name">PSG</div>
+		</div>
+	</div>
       <div class="group-card">
-        <div class="group-header">
-          <div>
-            <div class="group-label">Girone</div>
-            <div class="group-letter">B</div>
-          </div>
-        </div>
+		<div class="group-header">
+			<div class="standings-title">Girone B</div>			
+		</div>
         <div class="group-teams">
           <div class="group-team-name">Chisola</div>
           <div class="group-team-name">Rivarolese</div>
@@ -681,14 +616,10 @@
           <div class="group-team-name">Rebaudengo</div>
         </div>
       </div>
-
       <div class="group-card">
         <div class="group-header">
-          <div>
-            <div class="group-label">Girone</div>
-            <div class="group-letter">C</div>
-          </div>
-        </div>
+			<div class="standings-title">Girone C</div>
+		</div>
         <div class="group-teams">
           <div class="group-team-name">Alpignano</div>
           <div class="group-team-name">Venaria</div>
@@ -696,14 +627,10 @@
           <div class="group-team-name">Pro Collegno</div>
         </div>
       </div>
-
       <div class="group-card">
         <div class="group-header">
-          <div>
-            <div class="group-label">Girone</div>
-            <div class="group-letter">D</div>
-          </div>
-        </div>
+			<div class="standings-title">Girone D</div>
+		</div>
         <div class="group-teams">
           <div class="group-team-name">Sisport</div>
           <div class="group-team-name">Lucento</div>
@@ -711,14 +638,10 @@
           <div class="group-team-name">Vinovo Sport Ev.</div>
         </div>
       </div>
-
       <div class="group-card">
         <div class="group-header">
-          <div>
-            <div class="group-label">Girone</div>
-            <div class="group-letter">E</div>
-          </div>
-        </div>
+			<div class="standings-title">Girone E</div>
+		</div>
         <div class="group-teams">
           <div class="group-team-name">Lascaris</div>
           <div class="group-team-name">Chieri</div>
@@ -726,14 +649,10 @@
           <div class="group-team-name">San Maurizio</div>
         </div>
       </div>
-
       <div class="group-card">
         <div class="group-header">
-          <div>
-            <div class="group-label">Girone</div>
-            <div class="group-letter">F</div>
-          </div>
-        </div>
+			<div class="standings-title">Girone F</div>
+		</div>
         <div class="group-teams">
           <div class="group-team-name">CBS</div>
           <div class="group-team-name">Cenisia</div>
@@ -741,76 +660,42 @@
           <div class="group-team-name">Virtus Accademia</div>
         </div>
       </div>
-
     </div>
 
     <div style="margin-top:14px">
       <div class="info-banner">
         <strong>📋 FORMATO GARE</strong>
         Due tempi da 25 minuti · Campo sintetico
-      </div>
-      <div class="info-banner">
-        <strong>🏆 QUALIFICAZIONE</strong>
-        Le <strong style="color:var(--oro)">prime classificate</strong> accedono direttamente alle Finali.<br>
-        Le <strong style="color:var(--oro)">seconde e terze</strong> accedono ai Playoff.
-      </div>
-    </div>
-  </div>
+	</div>
+	<div class="info-banner">
+		<strong>📋 REGOLE DI QUALIFICAZIONE</strong><br>
+		Le <strong style="color:var(--oro)">prime classificate</strong> accedono direttamente alle Finali.<br>
+		Le <strong style="color:var(--oro)">seconde e terze</strong> disputano i Playoff.
+	</div>
+	</div>
+</div>
+  
 
   <!-- CLASSIFICA -->
   <div class="section" id="classifica">
-
-    <div class="legend-row">
-      <div class="legend-item"><div class="legend-dot" style="background:var(--oro)"></div> 1° posto</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--blu)"></div> 2° posto</div>
-      <div class="legend-item"><div class="legend-dot" style="background:var(--rosso)"></div> 3° posto</div>
+    <!-- <div class="legend-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--oro);width:12px;height:12px;border-radius:50%;"></div> 1° posto</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blu);width:12px;height:12px;border-radius:50%;"></div> 2° posto</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rosso);width:12px;height:12px;border-radius:50%;"></div> 3° posto</div>
     </div>
 
     <!-- Girone A -->
     <div class="standings-card">
       <div class="standings-header">
-        <div class="standings-title">Girone A</div>
-        <div class="standings-letter">A</div>
-      </div>
+        <div class="standings-title">Girone A</div>	
+       </div>
       <table class="standings-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>G</th>
-            <th>PT</th>
-            <th>GF</th>
-            <th>GS</th>
-          </tr>
-        </thead>
+        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first">
-            <td><span class="pos-badge pos-1">1</span>Cirié</td>
-            <td>1</td>
-            <td class="pts-cell">3</td>
-            <td>1</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-2">2</span>Vanchiglia</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>0</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>PSG</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Volpiano P.</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Cirié</td><td>1</td><td class="pts-cell">3</td><td>1</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Vanchiglia</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>PSG</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Volpiano P.</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
@@ -822,44 +707,12 @@
         <div class="standings-letter">B</div>
       </div>
       <table class="standings-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>G</th>
-            <th>PT</th>
-            <th>GF</th>
-            <th>GS</th>
-          </tr>
-        </thead>
+        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first">
-            <td><span class="pos-badge pos-1">1</span>Rivarolese</td>
-            <td>1</td>
-            <td class="pts-cell">3</td>
-            <td>7</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-2">2</span>Rebaudengo</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>0</td>
-            <td>7</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Chisola</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Pozzomaina</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Rivarolese</td><td>1</td><td class="pts-cell">3</td><td>7</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Rebaudengo</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>7</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Chisola</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Pozzomaina</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
@@ -871,44 +724,12 @@
         <div class="standings-letter">C</div>
       </div>
       <table class="standings-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>G</th>
-            <th>PT</th>
-            <th>GF</th>
-            <th>GS</th>
-          </tr>
-        </thead>
+        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first">
-            <td><span class="pos-badge pos-1">1</span>Alpignano</td>
-            <td>1</td>
-            <td class="pts-cell">3</td>
-            <td>6</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-2">2</span>Pro Collegno</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>0</td>
-            <td>6</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>STS</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Venaria</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Alpignano</td><td>1</td><td class="pts-cell">3</td><td>6</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Pro Collegno</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>6</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>STS</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Venaria</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
@@ -920,44 +741,12 @@
         <div class="standings-letter">D</div>
       </div>
       <table class="standings-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>G</th>
-            <th>PT</th>
-            <th>GF</th>
-            <th>GS</th>
-          </tr>
-        </thead>
+        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first">
-            <td><span class="pos-badge pos-1">1</span>Lucento</td>
-            <td>1</td>
-            <td class="pts-cell">3</td>
-            <td>2</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-2">2</span>Pianezza</td>
-            <td>1</td>
-            <td class="pts-cell">1</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-3">3</span>Sisport</td>
-            <td>1</td>
-            <td class="pts-cell">1</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">4</span>Vinovo S.E.</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>1</td>
-            <td>2</td>
-          </tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Lucento</td><td>1</td><td class="pts-cell">3</td><td>2</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Pianezza</td><td>1</td><td class="pts-cell">1</td><td>0</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-3">3</span>Sisport</td><td>1</td><td class="pts-cell">1</td><td>0</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-other">4</span>Vinovo S.E.</td><td>1</td><td class="pts-cell">0</td><td>1</td><td>2</td></tr>
         </tbody>
       </table>
     </div>
@@ -969,44 +758,12 @@
         <div class="standings-letter">E</div>
       </div>
       <table class="standings-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>G</th>
-            <th>PT</th>
-            <th>GF</th>
-            <th>GS</th>
-          </tr>
-        </thead>
+        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first">
-            <td><span class="pos-badge pos-1">1</span>Chieri</td>
-            <td>1</td>
-            <td class="pts-cell">3</td>
-            <td>2</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-2">2</span>San Maurizio</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>1</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Borgaro</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Lascaris</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Chieri</td><td>1</td><td class="pts-cell">3</td><td>2</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>San Maurizio</td><td>1</td><td class="pts-cell">0</td><td>1</td><td>2</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Borgaro</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Lascaris</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
@@ -1018,48 +775,15 @@
         <div class="standings-letter">F</div>
       </div>
       <table class="standings-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>G</th>
-            <th>PT</th>
-            <th>GF</th>
-            <th>GS</th>
-          </tr>
-        </thead>
+        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first">
-            <td><span class="pos-badge pos-1">1</span>Cenisia</td>
-            <td>2</td>
-            <td class="pts-cell">6</td>
-            <td>3</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-2">2</span>CBS</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>0</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-3">3</span>Mirafiori</td>
-            <td>1</td>
-            <td class="pts-cell">0</td>
-            <td>0</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td><span class="pos-badge pos-other">-</span>Virtus Acc.</td>
-            <td>-</td>
-            <td class="pts-cell" style="color:var(--grigio-medio)">-</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Cenisia</td><td>2</td><td class="pts-cell">6</td><td>3</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>CBS</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-3">3</span>Mirafiori</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>2</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Virtus Acc.</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
-
   </div>
 
   <!-- PARTITE -->
@@ -1068,9 +792,8 @@
     <!-- Girone A -->
     <div class="matches-group">
       <div class="matches-group-header">
-        <div class="matches-group-title">Girone A</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--oro)">A</div>
-      </div>
+        <div class="standings-title">Girone A</div>	
+       </div>
 
       <div class="match-card">
         <div class="match-date">10/05<span class="time">09:30</span></div>
@@ -1113,9 +836,8 @@
     <!-- Girone B -->
     <div class="matches-group">
       <div class="matches-group-header">
-        <div class="matches-group-title">Girone B</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--oro)">B</div>
-      </div>
+        <div class="standings-title">Girone B</div>	
+       </div>
       <div class="match-card">
         <div class="match-date">09/05<span class="time">11:00</span></div>
         <div class="match-team home">Rivarolese</div>
@@ -1157,9 +879,8 @@
     <!-- Girone C -->
     <div class="matches-group">
       <div class="matches-group-header">
-        <div class="matches-group-title">Girone C</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--oro)">C</div>
-      </div>
+        <div class="standings-title">Girone C</div>	
+       </div>
       <div class="match-card">
         <div class="match-date">09/05<span class="time">14:00</span></div>
         <div class="match-team home">Alpignano</div>
@@ -1201,9 +922,8 @@
     <!-- Girone D -->
     <div class="matches-group">
       <div class="matches-group-header">
-        <div class="matches-group-title">Girone D</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--oro)">D</div>
-      </div>
+        <div class="standings-title">Girone D</div>	
+       </div>
       <div class="match-card">
         <div class="match-date">09/05<span class="time">10:00</span></div>
         <div class="match-team home">Lucento</div>
@@ -1245,9 +965,8 @@
     <!-- Girone E -->
     <div class="matches-group">
       <div class="matches-group-header">
-        <div class="matches-group-title">Girone E</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--oro)">E</div>
-      </div>
+        <div class="standings-title">Girone E</div>	
+       </div>
       <div class="match-card">
         <div class="match-date">10/05<span class="time">10:30</span></div>
         <div class="match-team home">Chieri</div>
@@ -1289,9 +1008,8 @@
     <!-- Girone F -->
     <div class="matches-group">
       <div class="matches-group-header">
-        <div class="matches-group-title">Girone F</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:900;color:var(--oro)">F</div>
-      </div>
+        <div class="standings-title">Girone F</div>	
+       </div>>
       <div class="match-card">
         <div class="match-date">09/05<span class="time">12:00</span></div>
         <div class="match-team home">CBS</div>
@@ -1333,15 +1051,13 @@
   </div>
 
   <!-- PLAYOFF & FINALI -->
-  <div class="section" id="playoff">
-
-    <div class="info-banner">
-      <strong>📋 REGOLA DI QUALIFICAZIONE</strong>
-      Le <strong style="color:var(--oro)">prime classificate</strong> accedono direttamente alle Finali.<br>
-      Le <strong style="color:var(--oro)">seconde e terze</strong> disputano i Playoff.
-    </div>
-
-    <!-- PLAYOFF -->
+<div class="section" id="playoff">
+  <div class="info-banner">
+    <strong>📋 REGOLE DI QUALIFICAZIONE</strong><br>
+    Le <strong style="color:var(--oro)">prime classificate</strong> accedono direttamente alle Finali.<br>
+    Le <strong style="color:var(--oro)">seconde e terze</strong> disputano i Playoff.
+  </div>
+<!-- PLAYOFF -->
     <div class="phase-card">
       <div class="phase-header playoff">
         <div class="phase-icon">⚡</div>
