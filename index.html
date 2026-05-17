@@ -131,13 +131,13 @@
     display: flex;
     justify-content: center;
     min-width: max-content;
-    padding: 0 4px;
-    gap: 2px;
+    padding: 0 2px;
+    gap: 0px;
   }
   .tab {
     padding: 12px 10px;
     font-family: 'Exo 2', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -184,7 +184,7 @@
   .group-card:active { transform: scale(0.97); }
   .group-header {
     background: #1e3a6b;
-    padding: 14px 16px;
+    padding: 10px 14px;
     color: white;
     display: flex;
     align-items: center;
@@ -246,7 +246,7 @@
   }
   .standings-table thead th {
     font-family: 'Exo 2', sans-serif;
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -272,7 +272,7 @@
   .standings-table tbody td:first-child {
     text-align: left;
     padding-left: 14px;
-    font-size: 14.5px;
+    font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
     max-width: 140px;
@@ -417,19 +417,63 @@
     min-width: 28px;
     text-align: center;
   }
-  .playoff-info { flex: 1; }
+  .playoff-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
   .playoff-matchup {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--testo-scuro);
+    flex: 1;
+    text-align: center;
   }
   .playoff-datetime {
     font-size: 11px;
     color: var(--grigio-testo);
     margin-top: 2px;
     display: flex;
+    align-items: center;
     gap: 6px;
+  }
+  .playoff-date {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+  .playoff-date span, .playoff-date .time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    background: var(--blu);
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-align: center;
+    display: block;
+    line-height: 1.4;
+  }
+  .finals-date {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+  .finals-date span, .finals-date .time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    background: var(--rosso);
+    padding: 2px 7px;
+    border-radius: 3px;
+    text-align: center;
+    display: block;
+    line-height: 1.4;
   }
   .playoff-time-badge {
     font-family: 'Barlow Condensed', sans-serif;
@@ -444,13 +488,26 @@
   .finals-match {
     padding: 10px 14px;
     border-bottom: 1px solid var(--grigio-chiaro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   .finals-match:last-child { border-bottom: none; }
+  .finals-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--rosso);
+    min-width: 28px;
+    text-align: center;
+  }
   .finals-matchup {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--testo-scuro);
+    flex: 1;
+    text-align: center;
   }
   .finals-datetime {
     font-size: 11px;
@@ -644,7 +701,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone B</div></div>
+      <div class="standings-header"><div class="standings-title">Girone B</div><div class="standings-letter">B</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
@@ -657,7 +714,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone C</div></div>
+      <div class="standings-header"><div class="standings-title">Girone C</div><div class="standings-letter">C</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
@@ -670,7 +727,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone D</div></div>
+      <div class="standings-header"><div class="standings-title">Girone D</div><div class="standings-letter">D</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
@@ -683,7 +740,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone E</div></div>
+      <div class="standings-header"><div class="standings-title">Girone E</div><div class="standings-letter">E</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
@@ -696,7 +753,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone F</div></div>
+      <div class="standings-header"><div class="standings-title">Girone F</div><div class="standings-letter">F</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
@@ -978,45 +1035,45 @@
         </div>
       </div>
       <div class="playoff-match">
-        <div class="playoff-num">(1)</div>
+        <div class="playoff-num">#1</div>
         <div class="playoff-info">
+          <div class="playoff-date"><span>06/06</span><span class="time">15:00</span></div>
           <div class="playoff-matchup">2ª Girone A — 3ª Girone F</div>
-          <div class="playoff-datetime"><span class="playoff-time-badge">06/06 15:00</span>Campo Sintetico</div>
         </div>
       </div>
       <div class="playoff-match">
-        <div class="playoff-num">(2)</div>
+        <div class="playoff-num">#2</div>
         <div class="playoff-info">
+          <div class="playoff-date"><span>06/06</span><span class="time">16:00</span></div>
           <div class="playoff-matchup">2ª Girone B — 3ª Girone E</div>
-          <div class="playoff-datetime"><span class="playoff-time-badge">06/06 16:00</span>Campo Sintetico</div>
         </div>
       </div>
       <div class="playoff-match">
-        <div class="playoff-num">(3)</div>
+        <div class="playoff-num">#3</div>
         <div class="playoff-info">
+          <div class="playoff-date"><span>06/06</span><span class="time">17:00</span></div>
           <div class="playoff-matchup">2ª Girone C — 3ª Girone D</div>
-          <div class="playoff-datetime"><span class="playoff-time-badge">06/06 17:00</span>Campo Sintetico</div>
         </div>
       </div>
       <div class="playoff-match">
-        <div class="playoff-num">(4)</div>
+        <div class="playoff-num">#4</div>
         <div class="playoff-info">
+          <div class="playoff-date"><span>07/06</span><span class="time">15:00</span></div>
           <div class="playoff-matchup">2ª Girone D — 3ª Girone C</div>
-          <div class="playoff-datetime"><span class="playoff-time-badge">07/06 15:00</span>Campo Sintetico</div>
         </div>
       </div>
       <div class="playoff-match">
-        <div class="playoff-num">(5)</div>
+        <div class="playoff-num">#5</div>
         <div class="playoff-info">
+          <div class="playoff-date"><span>07/06</span><span class="time">16:00</span></div>
           <div class="playoff-matchup">2ª Girone E — 3ª Girone B</div>
-          <div class="playoff-datetime"><span class="playoff-time-badge">07/06 16:00</span>Campo Sintetico</div>
         </div>
       </div>
       <div class="playoff-match">
-        <div class="playoff-num">(6)</div>
+        <div class="playoff-num">#6</div>
         <div class="playoff-info">
+          <div class="playoff-date"><span>07/06</span><span class="time">17:00</span></div>
           <div class="playoff-matchup">2ª Girone F — 3ª Girone A</div>
-          <div class="playoff-datetime"><span class="playoff-time-badge">07/06 17:00</span>Campo Sintetico</div>
         </div>
       </div>
     </div>
@@ -1031,28 +1088,34 @@
         </div>
       </div>
       <div class="finals-match">
+        <div class="finals-num">#1</div>
+        <div class="finals-date"><span>13/06</span><span class="time">15:00</span></div>
         <div class="finals-matchup">1ª Girone A — Vincente Playoff 4</div>
-        <div class="finals-datetime"><span class="finals-time-badge">13/06 15:00</span>Campo Sintetico</div>
       </div>
       <div class="finals-match">
+        <div class="finals-num">#2</div>
+        <div class="finals-date"><span>13/06</span><span class="time">16:00</span></div>
         <div class="finals-matchup">1ª Girone B — Vincente Playoff 6</div>
-        <div class="finals-datetime"><span class="finals-time-badge">13/06 16:00</span>Campo Sintetico</div>
       </div>
       <div class="finals-match">
+        <div class="finals-num">#3</div>
+        <div class="finals-date"><span>13/06</span><span class="time">17:00</span></div>
         <div class="finals-matchup">1ª Girone C — Vincente Playoff 5</div>
-        <div class="finals-datetime"><span class="finals-time-badge">13/06 17:00</span>Campo Sintetico</div>
       </div>
       <div class="finals-match">
+        <div class="finals-num">#4</div>
+        <div class="finals-date"><span>14/06</span><span class="time">15:00</span></div>
         <div class="finals-matchup">1ª Girone D — Vincente Playoff 1</div>
-        <div class="finals-datetime"><span class="finals-time-badge">14/06 15:00</span>Campo Sintetico</div>
       </div>
       <div class="finals-match">
+        <div class="finals-num">#5</div>
+        <div class="finals-date"><span>14/06</span><span class="time">16:00</span></div>
         <div class="finals-matchup">1ª Girone E — Vincente Playoff 3</div>
-        <div class="finals-datetime"><span class="finals-time-badge">14/06 16:00</span>Campo Sintetico</div>
       </div>
       <div class="finals-match">
+        <div class="finals-num">#6</div>
+        <div class="finals-date"><span>14/06</span><span class="time">17:00</span></div>
         <div class="finals-matchup">1ª Girone F — Vincente Playoff 2</div>
-        <div class="finals-datetime"><span class="finals-time-badge">14/06 17:00</span>Campo Sintetico</div>
       </div>
     </div>
 
