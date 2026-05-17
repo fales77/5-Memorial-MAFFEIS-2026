@@ -132,12 +132,12 @@
     justify-content: center;
     min-width: max-content;
     padding: 0 4px;
-    gap: 6px;
+    gap: 4px;
   }
   .tab {
     padding: 12px 16px;
     font-family: 'Exo 2', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -241,17 +241,21 @@
   .standings-table thead tr {
     background: var(--blu-scuro);
   }
+  .standings-table {
+    table-layout: fixed;
+  }
   .standings-table thead th {
     font-family: 'Exo 2', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.7);
     padding: 7px 8px;
     text-align: center;
+    width: 36px;
   }
-  .standings-table thead th:first-child { text-align: left; padding-left: 14px; }
+  .standings-table thead th:first-child { text-align: left; padding-left: 14px; width: auto; }
   .standings-table tbody tr {
     border-bottom: 1px solid var(--grigio-chiaro);
     transition: background 0.15s;
@@ -261,7 +265,7 @@
 	font-family: 'Exo 2', sans-serif;
     padding: 9px 8px;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--testo-scuro);
   }
@@ -640,7 +644,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone B</div></div>
+      <div class="standings-header"><div class="standings-title">Girone B</div><div class="standings-letter">B</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
@@ -653,7 +657,7 @@
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone C</div></div>
+      <div class="standings-header"><div class="standings-title">Girone C</div><div class="standings-letter">C</div></div>
       <table class="standings-table">
         <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
