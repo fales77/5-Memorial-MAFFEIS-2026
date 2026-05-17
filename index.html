@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>5° Memorial Silvano Maffeis</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&family=Exo+2:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --blu: #1a3a6b;
@@ -23,7 +23,7 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Barlow', sans-serif;
     background: var(--grigio-chiaro);
     color: var(--testo-scuro);
     min-height: 100vh;
@@ -69,7 +69,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-family: 'Barlow Condensed', sans-serif; /*Barlow Condensed*/
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -136,8 +136,8 @@
   }
   .tab {
     padding: 12px 16px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -220,7 +220,7 @@
     justify-content: space-between;
   }
   .standings-title {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: 'Exo 2', sans-serif;
     font-size: 16px;
     font-weight: 800;
     color: white;
@@ -242,8 +242,8 @@
     background: var(--blu-scuro);
   }
   .standings-table thead th {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -258,10 +258,11 @@
   }
   .standings-table tbody tr:last-child { border-bottom: none; }
   .standings-table tbody td {
+	font-family: 'Exo 2', sans-serif;
     padding: 9px 8px;
     text-align: center;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 700;
     color: var(--testo-scuro);
   }
   .standings-table tbody td:first-child {
@@ -290,7 +291,7 @@
   .pos-other { background: var(--grigio-medio); color: var(--grigio-testo); }
   .pts-cell {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: 900;
     color: var(--blu);
   }
@@ -628,12 +629,12 @@
     <div class="standings-card">
       <div class="standings-header"><div class="standings-title">Girone A</div></div>
       <table class="standings-table">
-        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
+        <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Cirié</td><td>1</td><td class="pts-cell">3</td><td>1</td><td>0</td></tr>
-          <tr><td><span class="pos-badge pos-2">2</span>Vanchiglia</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>1</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>PSG</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Volpiano P.</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Cirié</td><td class="pts-cell">3</td><td>1</td><td>1</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Vanchiglia</td><td class="pts-cell">0</td><td>1</td><td>0</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>PSG</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Volpiano P.</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
@@ -641,12 +642,12 @@
     <div class="standings-card">
       <div class="standings-header"><div class="standings-title">Girone B</div></div>
       <table class="standings-table">
-        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
+        <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Rivarolese</td><td>1</td><td class="pts-cell">3</td><td>7</td><td>0</td></tr>
-          <tr><td><span class="pos-badge pos-2">2</span>Rebaudengo</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>7</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Chisola</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Pozzomaina</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Rivarolese</td><td class="pts-cell">3</td><td>1</td><td>7</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Rebaudengo</td><td class="pts-cell">0</td><td>1</td><td>0</td><td>7</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Chisola</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Pozzomaina</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
@@ -654,51 +655,51 @@
     <div class="standings-card">
       <div class="standings-header"><div class="standings-title">Girone C</div></div>
       <table class="standings-table">
-        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
+        <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Alpignano</td><td>1</td><td class="pts-cell">3</td><td>6</td><td>0</td></tr>
-          <tr><td><span class="pos-badge pos-2">2</span>Pro Collegno</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>6</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>STS</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Venaria</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Alpignano</td><td class="pts-cell">3</td><td>1</td><td>6</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Pro Collegno</td><td class="pts-cell">0</td><td>1</td><td>0</td><td>6</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>STS</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Venaria</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone D</div></div>
+      <div class="standings-header"><div class="standings-title">Girone D</div><div class="standings-letter">D</div></div>
       <table class="standings-table">
-        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
+        <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Lucento</td><td>1</td><td class="pts-cell">3</td><td>2</td><td>1</td></tr>
-          <tr><td><span class="pos-badge pos-2">2</span>Pianezza</td><td>1</td><td class="pts-cell">1</td><td>0</td><td>0</td></tr>
-          <tr><td><span class="pos-badge pos-3">3</span>Sisport</td><td>1</td><td class="pts-cell">1</td><td>0</td><td>0</td></tr>
-          <tr><td><span class="pos-badge pos-other">4</span>Vinovo S.E.</td><td>1</td><td class="pts-cell">0</td><td>1</td><td>2</td></tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Lucento</td><td class="pts-cell">3</td><td>1</td><td>2</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>Pianezza</td><td class="pts-cell">1</td><td>1</td><td>0</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-3">3</span>Sisport</td><td class="pts-cell">1</td><td>1</td><td>0</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-other">4</span>Vinovo S.E.</td><td class="pts-cell">0</td><td>1</td><td>1</td><td>2</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone E</div></div>
+      <div class="standings-header"><div class="standings-title">Girone E</div><div class="standings-letter">E</div></div>
       <table class="standings-table">
-        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
+        <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Chieri</td><td>1</td><td class="pts-cell">3</td><td>2</td><td>1</td></tr>
-          <tr><td><span class="pos-badge pos-2">2</span>San Maurizio</td><td>1</td><td class="pts-cell">0</td><td>1</td><td>2</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Borgaro</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Lascaris</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Chieri</td><td class="pts-cell">3</td><td>1</td><td>2</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>San Maurizio</td><td class="pts-cell">0</td><td>1</td><td>1</td><td>2</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Borgaro</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Lascaris</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="standings-card">
-      <div class="standings-header"><div class="standings-title">Girone F</div></div>
+      <div class="standings-header"><div class="standings-title">Girone F</div><div class="standings-letter">F</div></div>
       <table class="standings-table">
-        <thead><tr><th></th><th>G</th><th>PT</th><th>GF</th><th>GS</th></tr></thead>
+        <thead><tr><th></th><th>PT</th><th>G</th><th>GF</th><th>GS</th></tr></thead>
         <tbody>
-          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Cenisia</td><td>2</td><td class="pts-cell">6</td><td>3</td><td>0</td></tr>
-          <tr><td><span class="pos-badge pos-2">2</span>CBS</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>1</td></tr>
-          <tr><td><span class="pos-badge pos-3">3</span>Mirafiori</td><td>1</td><td class="pts-cell">0</td><td>0</td><td>2</td></tr>
-          <tr><td><span class="pos-badge pos-other">-</span>Virtus Acc.</td><td>-</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td></tr>
+          <tr class="team-row-first"><td><span class="pos-badge pos-1">1</span>Cenisia</td><td class="pts-cell">6</td><td>2</td><td>3</td><td>0</td></tr>
+          <tr><td><span class="pos-badge pos-2">2</span>CBS</td><td class="pts-cell">0</td><td>1</td><td>0</td><td>1</td></tr>
+          <tr><td><span class="pos-badge pos-3">3</span>Mirafiori</td><td class="pts-cell">0</td><td>1</td><td>0</td><td>2</td></tr>
+          <tr><td><span class="pos-badge pos-other">-</span>Virtus Acc.</td><td class="pts-cell" style="color:var(--grigio-medio)">-</td><td>-</td><td>-</td><td>-</td></tr>
         </tbody>
       </table>
     </div>
