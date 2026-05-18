@@ -82,7 +82,7 @@
     color: rgba(255,255,255,0.85);
   }
   .header-main {
-    padding: 16px 16px 20px;
+    padding: 16px 16px 8px;		/* ridotto il padding inferiore */
     position: relative; z-index: 1;
     text-align: center;
   }
@@ -110,16 +110,17 @@
     text-transform: uppercase;
     color: var(--oro);
   }
-  .header-info {
+ .header-info {
     background: rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding: 8px 16px;
+    padding: 6px 16px;        /* ridotto */
     font-size: 12px;
     color: rgba(255,255,255,0.8);
-  }
+    margin-top: 2px;          /* piccolo margine per non farle attaccate */
+}
 
   /* TABS CENTRATI */
   .tabs-wrapper {
