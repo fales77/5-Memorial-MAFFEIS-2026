@@ -53,6 +53,12 @@
     background: rgba(200,16,46,0.12);
     border-radius: 50%;
   }
+  /* Disattiviamo temporaneamente gli effetti per non interferire con i loghi */
+.header::before,
+.header::after {
+    display: none;     /* ← Disattivati */
+}
+ 
   .header-logos {
     display: flex;
     justify-content: space-between;
@@ -246,7 +252,7 @@
   }
   .standings-table thead th {
     font-family: 'Exo 2', sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -265,7 +271,7 @@
 	font-family: 'Exo 2', sans-serif;
     padding: 9px 8px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--testo-scuro);
   }
@@ -582,13 +588,15 @@
 
 <div class="header">
   <div class="header-logos">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Federazione_Italiana_Giuoco_Calcio_Logo_2021.png"
-         alt="FIGC Logo Ufficiale"
+    <!-- Logo FIGC a sinistra -->
+    <img src="https://www.figc.it/logos/giovani-white.svg?w=96"
+         alt="FIGC SGS Club Settore Giovanile"
          class="figc-logo">
-    <div class="logo-badge" style="flex-direction:column;align-items:flex-end;gap:2px">
-      <div style="font-size:9px;color:rgba(255,255,255,0.5)">ACADEMY ELITE</div>
-      <div style="font-size:9px;color:rgba(255,255,255,0.5)">VOLPIANO</div>
-    </div>
+
+    <!-- Logo Academy Volpiano a destra -->
+    <img src="https://lh3.googleusercontent.com/ZxW6TGf_bswmXdpyqikDJq10I_XA8GLFkK3WK44aGFCPgtJr5lQgHfZeZwM7HPzAtu_gjH-DhhJDLH7q4Scyp6QveTwgHMqp8noyxQ"
+         alt="Academy Elite Volpiano"
+         style="height: 48px; width: auto; max-width: 170px; z-index: 2; position: relative;">
   </div>
 
   <div class="header-main">
@@ -922,7 +930,7 @@
       <div class="match-card">
         <div class="match-date">24/05<span class="time">11:30</span></div>
         <div class="match-team home">Pianezza</div>
-        <div class="match-score">vs</div>
+        <div class="match-score pending">vs</div>
         <div class="match-team away">Lucento</div>
       </div>
       <div class="match-card">
@@ -1132,13 +1140,135 @@
 </div>
 
 <script>
+  // ==================== LOGICA CLASSIFICHE AUTOMATICA ====================
+  function calculateStandings() {
+    const groups = {
+      'A': {}, 'B': {}, 'C': {}, 'D': {}, 'E': {}, 'F': {}
+    };
+
+    // Inizializza tutte le squadre
+    document.querySelectorAll('.matches-group').forEach(groupEl => {
+      const title = groupEl.querySelector('.standings-title').textContent.trim();
+      const groupLetter = title.replace('Girone ', '');
+      
+      if (!groups[groupLetter]) return;
+
+      // Trova tutte le squadre in questo girone dalle partite
+      groupEl.querySelectorAll('.match-team').forEach(teamEl => {
+        const teamName = teamEl.textContent.trim();
+        if (teamName && !groups[groupLetter][teamName]) {
+          groups[groupLetter][teamName] = { pts: 0, g: 0, gf: 0, gs: 0 };
+        }
+      });
+    });
+
+    // Elabora tutti i risultati
+    document.querySelectorAll('.match-card').forEach(match => {
+      const homeTeam = match.querySelector('.match-team.home').textContent.trim();
+      const awayTeam = match.querySelector('.match-team.away').textContent.trim();
+      const scoreEl = match.querySelector('.match-score');
+
+      if (!scoreEl || scoreEl.classList.contains('pending') || scoreEl.classList.contains('rinv')) return;
+
+      const scoreText = scoreEl.textContent.trim();
+      if (!scoreText.includes('-')) return;
+
+      const [homeGoals, awayGoals] = scoreText.split('-').map(s => parseInt(s.trim()));
+
+      const groupLetter = match.closest('.matches-group').querySelector('.standings-title').textContent.replace('Girone ', '');
+
+      if (!groups[groupLetter]) return;
+
+      // Aggiorna Home
+      if (groups[groupLetter][homeTeam]) {
+        groups[groupLetter][homeTeam].g++;
+        groups[groupLetter][homeTeam].gf += homeGoals;
+        groups[groupLetter][homeTeam].gs += awayGoals;
+      }
+
+      // Aggiorna Away
+      if (groups[groupLetter][awayTeam]) {
+        groups[groupLetter][awayTeam].g++;
+        groups[groupLetter][awayTeam].gf += awayGoals;
+        groups[groupLetter][awayTeam].gs += homeGoals;
+      }
+
+      // Assegna punti
+      if (homeGoals > awayGoals) {
+        if (groups[groupLetter][homeTeam]) groups[groupLetter][homeTeam].pts += 3;
+      } else if (awayGoals > homeGoals) {
+        if (groups[groupLetter][awayTeam]) groups[groupLetter][awayTeam].pts += 3;
+      } else {
+        if (groups[groupLetter][homeTeam]) groups[groupLetter][homeTeam].pts += 1;
+        if (groups[groupLetter][awayTeam]) groups[groupLetter][awayTeam].pts += 1;
+      }
+    });
+
+    // Aggiorna le tabelle HTML
+    document.querySelectorAll('.standings-card').forEach(card => {
+      const titleEl = card.querySelector('.standings-title');
+      if (!titleEl) return;
+      
+      const groupLetter = titleEl.textContent.replace('Girone ', '');
+      const tbody = card.querySelector('tbody');
+      if (!tbody || !groups[groupLetter]) return;
+
+      const teamsArray = Object.entries(groups[groupLetter])
+        .map(([name, data]) => ({
+          name,
+          ...data,
+          diff: data.gf - data.gs
+        }))
+        .sort((a, b) => b.pts - a.pts || b.diff - a.diff || b.gf - a.gf);
+
+      tbody.innerHTML = '';
+
+      teamsArray.forEach((team, index) => {
+        const pos = index + 1;
+        let badgeClass = 'pos-other';
+        if (pos === 1) badgeClass = 'pos-1';
+        else if (pos === 2) badgeClass = 'pos-2';
+        else if (pos === 3) badgeClass = 'pos-3';
+
+        const row = document.createElement('tr');
+        if (pos === 1) row.classList.add('team-row-first');
+
+        row.innerHTML = `
+          <td><span class="pos-badge ${badgeClass}">${pos}</span>${team.name}</td>
+          <td class="pts-cell">${team.pts}</td>
+          <td>${team.g}</td>
+          <td>${team.gf}</td>
+          <td>${team.gs}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    });
+  }
+
+  // ==================== FUNZIONE TABS ====================
   function showTab(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    event.target.classList.add('active');
+
+    const section = document.getElementById(id);
+    if (section) section.classList.add('active');
+
+    const activeTab = Array.from(document.querySelectorAll('.tab')).find(t => 
+      t.getAttribute('onclick').includes(`'${id}'`)
+    );
+    if (activeTab) activeTab.classList.add('active');
+
+    if (id === 'classifica') {
+      calculateStandings();
+    }
+
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
+
+  // Esegui al caricamento
+  window.onload = () => {
+    calculateStandings(); // Calcola subito le classifiche
+  };
 </script>
 </body>
 </html>
