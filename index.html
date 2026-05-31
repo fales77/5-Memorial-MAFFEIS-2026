@@ -1160,14 +1160,11 @@
       'A': {}, 'B': {}, 'C': {}, 'D': {}, 'E': {}, 'F': {}
     };
 
-    // Inizializza tutte le squadre
     document.querySelectorAll('.matches-group').forEach(groupEl => {
       const title = groupEl.querySelector('.standings-title').textContent.trim();
       const groupLetter = title.replace('Girone ', '');
-      
       if (!groups[groupLetter]) return;
 
-      // Trova tutte le squadre in questo girone dalle partite
       groupEl.querySelectorAll('.match-team').forEach(teamEl => {
         const teamName = teamEl.textContent.trim();
         if (teamName && !groups[groupLetter][teamName]) {
@@ -1176,7 +1173,8 @@
       });
     });
 
-    // Elabora tutti i risultati
+    const partitePerGirone = { 'A': [], 'B': [], 'C': [], 'D': [], 'E': [], 'F': [] };
+
     document.querySelectorAll('.match-card').forEach(match => {
       const homeTeam = match.querySelector('.match-team.home').textContent.trim();
       const awayTeam = match.querySelector('.match-team.away').textContent.trim();
@@ -1188,26 +1186,23 @@
       if (!scoreText.includes('-')) return;
 
       const [homeGoals, awayGoals] = scoreText.split('-').map(s => parseInt(s.trim()));
-
-      const groupLetter = match.closest('.matches-group').querySelector('.standings-title').textContent.replace('Girone ', '');
+      const groupLetter = match.closest('.matches-group').querySelector('.standings-title').textContent.replace('Girone ', '').trim();
 
       if (!groups[groupLetter]) return;
 
-      // Aggiorna Home
+      partitePerGirone[groupLetter].push({ home: homeTeam, away: awayTeam, homeGoals, awayGoals });
+
       if (groups[groupLetter][homeTeam]) {
         groups[groupLetter][homeTeam].g++;
         groups[groupLetter][homeTeam].gf += homeGoals;
         groups[groupLetter][homeTeam].gs += awayGoals;
       }
-
-      // Aggiorna Away
       if (groups[groupLetter][awayTeam]) {
         groups[groupLetter][awayTeam].g++;
         groups[groupLetter][awayTeam].gf += awayGoals;
         groups[groupLetter][awayTeam].gs += homeGoals;
       }
 
-      // Assegna punti
       if (homeGoals > awayGoals) {
         if (groups[groupLetter][homeTeam]) groups[groupLetter][homeTeam].pts += 3;
       } else if (awayGoals > homeGoals) {
@@ -1218,25 +1213,56 @@
       }
     });
 
-    // Aggiorna le tabelle HTML
+    function scontroDisretto(lettera, teamA, teamB) {
+      const sd = { pts: { [teamA]: 0, [teamB]: 0 }, gf: { [teamA]: 0, [teamB]: 0 } };
+
+      partitePerGirone[lettera].forEach(p => {
+        if (p.home === teamA && p.away === teamB) {
+          sd.gf[teamA] += p.homeGoals;
+          sd.gf[teamB] += p.awayGoals;
+          if (p.homeGoals > p.awayGoals)      sd.pts[teamA] += 3;
+          else if (p.awayGoals > p.homeGoals) sd.pts[teamB] += 3;
+          else { sd.pts[teamA]++; sd.pts[teamB]++; }
+        } else if (p.home === teamB && p.away === teamA) {
+          sd.gf[teamB] += p.homeGoals;
+          sd.gf[teamA] += p.awayGoals;
+          if (p.homeGoals > p.awayGoals)      sd.pts[teamB] += 3;
+          else if (p.awayGoals > p.homeGoals) sd.pts[teamA] += 3;
+          else { sd.pts[teamA]++; sd.pts[teamB]++; }
+        }
+      });
+
+      if (sd.pts[teamA] !== sd.pts[teamB]) return sd.pts[teamA] > sd.pts[teamB] ? -1 : 1;
+      if (sd.gf[teamA] !== sd.gf[teamB]) return sd.gf[teamA] > sd.gf[teamB] ? -1 : 1;
+      return 0;
+    }
+
+    // 🔑 Classifiche ordinate CON scontro diretto — usate sia per tabelle che per playoff
+    const classificheOrdinate = {};
+
     document.querySelectorAll('.standings-card').forEach(card => {
       const titleEl = card.querySelector('.standings-title');
       if (!titleEl) return;
-      
-      const groupLetter = titleEl.textContent.replace('Girone ', '');
+
+      const groupLetter = titleEl.textContent.replace('Girone ', '').trim();
       const tbody = card.querySelector('tbody');
       if (!tbody || !groups[groupLetter]) return;
 
       const teamsArray = Object.entries(groups[groupLetter])
-        .map(([name, data]) => ({
-          name,
-          ...data,
-          diff: data.gf - data.gs
-        }))
-        .sort((a, b) => b.pts - a.pts || b.diff - a.diff || b.gf - a.gf);
+        .map(([name, data]) => ({ name, ...data, diff: data.gf - data.gs }))
+        .sort((a, b) => {
+          if (b.pts !== a.pts) return b.pts - a.pts;
+          const sd = scontroDisretto(groupLetter, a.name, b.name);
+          if (sd !== 0) return sd;
+          if (b.diff !== a.diff) return b.diff - a.diff;
+          if (b.gf !== a.gf) return b.gf - a.gf;
+          return a.name.localeCompare(b.name);
+        });
+
+      // 🔑 Salva la classifica già ordinata correttamente
+      classificheOrdinate[groupLetter] = teamsArray;
 
       tbody.innerHTML = '';
-
       teamsArray.forEach((team, index) => {
         const pos = index + 1;
         let badgeClass = 'pos-other';
@@ -1246,7 +1272,6 @@
 
         const row = document.createElement('tr');
         if (pos === 1) row.classList.add('team-row-first');
-
         row.innerHTML = `
           <td><span class="pos-badge ${badgeClass}">${pos}</span>${team.name}</td>
           <td class="pts-cell">${team.pts}</td>
@@ -1256,6 +1281,67 @@
         `;
         tbody.appendChild(row);
       });
+    });
+
+    return classificheOrdinate; // 🔑 restituisce classifiche già ordinate con scontro diretto
+  }
+
+  // ==================== POPOLA PLAYOFF/FINALI CON NOMI REALI ====================
+  function popolaFasiFinali(classificheOrdinate) {
+
+    const gironiCompleti = {};
+    document.querySelectorAll('.matches-group').forEach(groupEl => {
+      const groupLetter = groupEl.querySelector('.standings-title').textContent.replace('Girone ', '').trim();
+      const tutte = groupEl.querySelectorAll('.match-card');
+      const giocate = Array.from(tutte).filter(m => {
+        const score = m.querySelector('.match-score');
+        return score &&
+               !score.classList.contains('pending') &&
+               !score.classList.contains('rinv') &&
+               score.textContent.includes('-');
+      });
+      gironiCompleti[groupLetter] = giocate.length === tutte.length;
+    });
+
+    function risolvi(testo) {
+      const match = testo.match(/(\d)ª Girone ([A-F])/);
+      if (!match) return null;
+      const pos = parseInt(match[1]) - 1;
+      const lettera = match[2];
+      if (!gironiCompleti[lettera]) return null;
+      // 🔑 usa direttamente la classifica già ordinata con scontro diretto
+      if (!classificheOrdinate[lettera] || !classificheOrdinate[lettera][pos]) return null;
+      return classificheOrdinate[lettera][pos].name;
+    }
+
+    document.querySelectorAll('.playoff-matchup, .finals-matchup').forEach(el => {
+      if (!el.dataset.original) {
+        el.dataset.original = el.textContent.trim();
+      }
+    });
+
+    document.querySelectorAll('.playoff-matchup').forEach(el => {
+      const parti = el.dataset.original.split('—').map(s => s.trim());
+      if (parti.length !== 2) return;
+
+      const r1 = risolvi(parti[0]);
+      const r2 = risolvi(parti[1]);
+
+      const t1 = r1 ? `<strong>${r1}</strong>` : `<span style="opacity:0.55">${parti[0]}</span>`;
+      const t2 = r2 ? `<strong>${r2}</strong>` : `<span style="opacity:0.55">${parti[1]}</span>`;
+
+      el.innerHTML = `${t1} — ${t2}`;
+    });
+
+    document.querySelectorAll('.finals-matchup').forEach(el => {
+      const parti = el.dataset.original.split('—').map(s => s.trim());
+      if (parti.length !== 2) return;
+
+      const r1 = risolvi(parti[0]);
+      const t1 = r1 ? `<strong>${r1}</strong>` : `<span style="opacity:0.55">${parti[0]}</span>`;
+      const t2 = `<span style="opacity:0.55">${parti[1]}</span>`;
+
+      el.innerHTML = `${t1} — ${t2}`;
     });
   }
 
@@ -1267,23 +1353,25 @@
     const section = document.getElementById(id);
     if (section) section.classList.add('active');
 
-    const activeTab = Array.from(document.querySelectorAll('.tab')).find(t => 
+    const activeTab = Array.from(document.querySelectorAll('.tab')).find(t =>
       t.getAttribute('onclick').includes(`'${id}'`)
     );
     if (activeTab) activeTab.classList.add('active');
 
-    if (id === 'classifica') {
-      calculateStandings();
+    if (id === 'classifica' || id === 'playoff') {
+      const classificheOrdinate = calculateStandings();
+      popolaFasiFinali(classificheOrdinate);
     }
 
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Esegui al caricamento
+  // ==================== INIT ====================
   window.onload = () => {
-    calculateStandings(); // Calcola subito le classifiche
+    const classificheOrdinate = calculateStandings();
+    popolaFasiFinali(classificheOrdinate);
   };
-  
+
 </script>
 </body>
 </html>
